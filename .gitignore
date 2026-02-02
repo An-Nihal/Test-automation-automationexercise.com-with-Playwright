@@ -6,3 +6,5 @@ playwright/.cache/
 .env
 allure-results/
 allure-report/
+downloads/*
+!downloads/.gitkeep
