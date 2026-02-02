@@ -34,7 +34,7 @@ export class CartPage extends BasePage {
 
     async removeProduct(productName: string) {
         const productRow = this.page.locator('tr').filter({ hasText: productName });
-        await productRow.locator('.cart_quantity_delete').click();
+        await this.clickAndWait(productRow.locator('.cart_quantity_delete'));
     }
 
     async verifyProductRemoved(productName: string) {
@@ -50,7 +50,7 @@ export class CartPage extends BasePage {
     }
 
     async clickProceedToCheckout() {
-        await this.proceedToCheckoutButton.click();
+        await this.clickAndWait(this.proceedToCheckoutButton);
     }
 }
 

@@ -41,10 +41,10 @@ export class ContactPage extends BasePage {
         this.page.once('dialog', async dialog => {
             await dialog.accept();
         });
-        await this.submitButton.click();
+        await this.clickAndWait(this.submitButton);
     }
 
     async clickHome() {
-        await this.homeButton.click();
+        await this.clickAndWait(this.homeButton);
     }
 }

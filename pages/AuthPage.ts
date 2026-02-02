@@ -58,13 +58,13 @@ export class AuthPage extends BasePage {
     async login(email: string, pass: string) {
         await this.loginEmailInput.fill(email);
         await this.loginPasswordInput.fill(pass);
-        await this.loginButton.click();
+        await this.clickAndWait(this.loginButton);
     }
 
     async initiateSignup(name: string, email: string) {
         await this.signupNameInput.fill(name);
         await this.signupEmailInput.fill(email);
-        await this.signupButton.click();
+        await this.clickAndWait(this.signupButton);
     }
 
     async fillAccountDetails(details: any) {
@@ -81,7 +81,7 @@ export class AuthPage extends BasePage {
         await this.cityInput.fill(details.city);
         await this.zipCodeInput.fill(details.zipCode);
         await this.mobileNumberInput.fill(details.mobileNumber);
-        await this.createAccountButton.click();
+        await this.clickAndWait(this.createAccountButton);
     }
 
     async registerUser(name: string, email: string, details: any) {

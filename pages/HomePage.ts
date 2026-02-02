@@ -26,7 +26,7 @@ export class HomePage extends BasePage {
         this.loggedInUser = page.locator('text=Logged in as');
         this.deleteAccountButton = page.getByRole('link', { name: ' Delete Account' });
         this.contactUsButton = page.getByRole('link', { name: ' Contact us' });
-        this.testCasesButton = page.getByRole('link', { name: ' Test Cases' });
+        this.testCasesButton = page.locator('a[href="/test_cases"]').filter({ hasText: 'Test Cases' }).first();
         this.subscriptionHeader = page.locator('.single-widget h2');
         this.subscriptionEmailInput = page.locator('#susbscribe_email');
         this.subscriptionSubmitButton = page.locator('#subscribe');
@@ -42,32 +42,31 @@ export class HomePage extends BasePage {
     }
 
     async clickSignupLogin() {
-        await this.signupLoginButton.click();
+        await this.clickAndWait(this.signupLoginButton);
     }
 
     async clickProducts() {
-        await this.productsButton.click();
-        await this.page.waitForURL(/.*products/);
+        await this.clickAndWaitForUrl(this.productsButton, /.*products/);
     }
 
     async clickCart() {
-        await this.cartButton.click();
+        await this.clickAndWait(this.cartButton);
     }
 
     async clickDeleteAccount() {
-        await this.deleteAccountButton.click();
+        await this.clickAndWait(this.deleteAccountButton);
     }
 
     async clickLogout() {
-        await this.page.getByRole('link', { name: 'Logout' }).click();
+        await this.clickAndWait(this.page.getByRole('link', { name: 'Logout' }));
     }
 
     async clickContactUs() {
-        await this.contactUsButton.click();
+        await this.clickAndWait(this.contactUsButton);
     }
 
     async clickTestCases() {
-        await this.testCasesButton.click();
+        await this.clickAndWait(this.testCasesButton);
     }
 
     async scrollToFooter() {
@@ -84,7 +83,7 @@ export class HomePage extends BasePage {
 
     async subscribe(email: string) {
         await this.subscriptionEmailInput.fill(email);
-        await this.subscriptionSubmitButton.click();
+        await this.clickAndWait(this.subscriptionSubmitButton);
     }
 
     async verifyCategoriesVisible() {
@@ -93,19 +92,19 @@ export class HomePage extends BasePage {
 
     async clickCategory(mainCategory: string, subCategory: string) {
         // Click on main category to expand
-        await this.page.locator(`.panel-heading a[href*="${mainCategory.toLowerCase()}"]`).click();
+        await this.clickAndWait(this.page.locator(`.panel-heading a[href*="${mainCategory.toLowerCase()}"]`));
         // Click on sub-category
-        await this.page.locator(`#${mainCategory} a`).filter({ hasText: subCategory }).click();
+        await this.clickAndWait(this.page.locator(`#${mainCategory} a`).filter({ hasText: subCategory }));
     }
 
     async clickWomenCategory(subCategory: string) {
-        await this.page.locator('a[href="#Women"]').click();
-        await this.page.locator('#Women a').filter({ hasText: subCategory }).click();
+        await this.clickAndWait(this.page.locator('a[href="#Women"]'));
+        await this.clickAndWait(this.page.locator('#Women a').filter({ hasText: subCategory }));
     }
 
     async clickMenCategory(subCategory: string) {
-        await this.page.locator('a[href="#Men"]').click();
-        await this.page.locator('#Men a').filter({ hasText: subCategory }).click();
+        await this.clickAndWait(this.page.locator('a[href="#Men"]'));
+        await this.clickAndWait(this.page.locator('#Men a').filter({ hasText: subCategory }));
     }
 
     async scrollToRecommendedItems() {
@@ -114,15 +113,15 @@ export class HomePage extends BasePage {
 
     async addRecommendedItemToCart() {
         const recommendedProduct = this.page.locator('#recommended-item-carousel .add-to-cart').first();
-        await recommendedProduct.click();
+        await this.clickAndWait(recommendedProduct);
     }
 
     async clickScrollUpArrow() {
-        await this.scrollUpArrow.click();
+        await this.clickAndWait(this.scrollUpArrow);
     }
 
     async viewProductOnHomePage(index: number) {
-        await this.page.locator('.features_items .choose a[href*="product_details"]').nth(index).click();
+        await this.clickAndWait(this.page.locator('.features_items .choose a[href*="product_details"]').nth(index));
     }
 }
 

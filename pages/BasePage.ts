@@ -18,4 +18,13 @@ export class BasePage {
     async waitForUrl(url: string) {
         await this.page.waitForURL(url);
     }
+
+    async clickAndWait(locator: Locator) {
+        await locator.click();
+    }
+
+    async clickAndWaitForUrl(locator: Locator, urlPattern: string | RegExp) {
+        await locator.click();
+        await this.page.waitForURL(urlPattern);
+    }
 }

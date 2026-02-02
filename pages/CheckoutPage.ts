@@ -25,6 +25,6 @@ export class CheckoutPage extends BasePage {
     }
 
     async clickPlaceOrder() {
-        await this.placeOrderButton.click();
+        await this.clickAndWait(this.placeOrderButton);
     }
 }

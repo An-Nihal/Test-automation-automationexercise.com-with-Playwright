@@ -32,6 +32,6 @@ export class PaymentPage extends BasePage {
     }
 
     async submitPayment() {
-        await this.submitButton.click();
+        await this.clickAndWait(this.submitButton);
     }
 }

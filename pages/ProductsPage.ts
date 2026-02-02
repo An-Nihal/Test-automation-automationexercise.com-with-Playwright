@@ -47,12 +47,12 @@ export class ProductsPage extends BasePage {
 
     async searchProduct(name: string) {
         await this.searchInput.fill(name);
-        await this.searchButton.click();
+        await this.clickAndWait(this.searchButton);
     }
 
     async viewProduct(index: number) {
         const viewProductLinks = this.page.locator('.choose a[href*="product_details"]');
-        await viewProductLinks.nth(index).click();
+        await this.clickAndWait(viewProductLinks.nth(index));
     }
 
     async verifyProductDetailsVisible() {
@@ -70,31 +70,31 @@ export class ProductsPage extends BasePage {
     }
 
     async clickAddToCart() {
-        await this.addToCartButton.click();
+        await this.clickAndWait(this.addToCartButton);
     }
 
     async addProductToCart(index: number) {
         const product = this.page.locator('.product-image-wrapper').nth(index);
         await product.hover();
-        await product.locator('.add-to-cart').first().click();
+        await this.clickAndWait(product.locator('.add-to-cart').first());
     }
 
     async addProductToCartByName(name: string) {
         const product = this.page.locator('.product-image-wrapper').filter({ hasText: name });
         await product.hover();
-        await product.locator('.add-to-cart').first().click();
+        await this.clickAndWait(product.locator('.add-to-cart').first());
     }
 
     async clickContinueShopping() {
-        await this.page.getByRole('button', { name: 'Continue Shopping' }).click();
+        await this.clickAndWait(this.page.getByRole('button', { name: 'Continue Shopping' }));
     }
 
     async clickViewCart() {
-        await this.page.getByRole('link', { name: 'View Cart' }).click();
+        await this.clickAndWait(this.page.getByRole('link', { name: 'View Cart' }));
     }
 
     async clickBrand(brandName: string) {
-        await this.page.locator('.brands-name').getByRole('link', { name: brandName }).click();
+        await this.clickAndWait(this.page.locator('.brands-name').getByRole('link', { name: brandName }));
     }
 
     async verifyBrandsVisible() {
@@ -105,7 +105,7 @@ export class ProductsPage extends BasePage {
         await this.reviewNameInput.fill(name);
         await this.reviewEmailInput.fill(email);
         await this.reviewTextarea.fill(review);
-        await this.reviewSubmitButton.click();
+        await this.clickAndWait(this.reviewSubmitButton);
     }
 
     async getProductCount() {
