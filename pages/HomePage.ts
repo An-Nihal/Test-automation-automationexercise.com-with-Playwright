@@ -34,7 +34,7 @@ export class HomePage extends BasePage {
         this.categorySection = page.locator('.left-sidebar');
         this.recommendedItemsHeader = page.getByText('recommended items', { exact: false });
         this.scrollUpArrow = page.locator('#scrollUp');
-        this.heroText = page.getByText('Full-Fledged practice website for Automation Engineers');
+        this.heroText = page.getByRole('heading', { name: 'Full-Fledged practice website' }).first();
     }
 
     async visit() {
