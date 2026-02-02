@@ -170,6 +170,3 @@ BASE_URL=https://automationexercise.com
 2. Make your changes
 3. Run tests to ensure they pass
 4. Submit a pull request
-
-## License
-MIT
