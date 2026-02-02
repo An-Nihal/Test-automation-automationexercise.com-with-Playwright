@@ -1,6 +1,7 @@
 export const testData = {
     user: {
         name: 'TestUser',
+        title: 'Mr',
         email: `test${Date.now()}@example.com`, // Dynamic email to avoid duplicate error
         password: 'password123',
         day: '10',
