@@ -6,7 +6,7 @@ This is a complete automation framework using Playwright with TypeScript for [ht
 - **Page Object Model (POM)**: Modular and strictly typed page objects.
 - **Fixture Support**: Custom fixtures for all page objects.
 - **Complete Test Coverage**: All 26 test cases from the [Test Cases Page](https://automationexercise.com/test_cases).
-- **Reporting**: Allure and HTML reporters.
+- **Reporting**: HTML and List reporters.
 - **CI/CD**: GitHub Actions workflow included.
 - **Test Data**: Separated test data files.
 
@@ -137,21 +137,13 @@ npx playwright test --debug
 npx playwright show-report
 ```
 
-### Allure Report
-Generate and open Allure report:
-```bash
-npx allure generate ./allure-results -o ./allure-report --clean
-npx allure open ./allure-report
-```
-(Requires `allure-commandline` installed or use standard allure commands)
-
 ## Configuration
 
 ### Playwright Config
 The `playwright.config.ts` file contains:
 - Base URL configuration
 - Browser settings (Chromium by default)
-- Reporter configuration (HTML, List, Allure)
+- Reporter configuration (HTML, List)
 - Screenshot and video on failure
 
 ### Environment Variables
