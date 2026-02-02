@@ -2,8 +2,6 @@
 
 This is a complete automation framework using Playwright with TypeScript for [https://automationexercise.com/](https://automationexercise.com/).
 
-> 📚 **New to automation testing?** Check out our [Complete Beginner's Guide](docs/COMPLETE_GUIDE.md) - a detailed documentation explaining every file, every line of code, assuming zero prior knowledge of Playwright, TypeScript, or automation testing.
-
 ## Features
 - **Page Object Model (POM)**: Modular and strictly typed page objects.
 - **Fixture Support**: Custom fixtures for all page objects.
