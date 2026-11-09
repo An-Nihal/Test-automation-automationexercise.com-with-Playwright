@@ -17,7 +17,15 @@ type MyFixtures = {
     contactPage: ContactPage;
 };
 
+// Third-party ad and tracking scripts on automationexercise.com slow page loads and can show
+// full-screen ads that cover elements, causing flaky tests. They are not part of the app under test.
+const BLOCKED_HOSTS = /googlesyndication|doubleclick|googleadservices|adservice\.google|fundingchoicesmessages|googletagmanager|google-analytics/;
+
 export const test = base.extend<MyFixtures>({
+    page: async ({ page }, use) => {
+        await page.route(BLOCKED_HOSTS, route => route.abort());
+        await use(page);
+    },
     homePage: async ({ page }, use) => {
         await use(new HomePage(page));
     },

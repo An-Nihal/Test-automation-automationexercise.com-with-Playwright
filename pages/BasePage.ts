@@ -21,10 +21,14 @@ export class BasePage {
 
     async clickAndWait(locator: Locator) {
         await locator.click();
+        // If the click started a navigation, wait until the new page has finished loading
+        // (returns immediately when the page was already loaded and nothing navigated)
+        await this.page.waitForLoadState('load');
     }
 
     async clickAndWaitForUrl(locator: Locator, urlPattern: string | RegExp) {
         await locator.click();
+        // waitForURL resolves on the 'load' event, so page scripts are ready afterwards
         await this.page.waitForURL(urlPattern);
     }
 }

@@ -22,7 +22,7 @@ export class HomePage extends BasePage {
         super(page);
         this.signupLoginButton = page.getByRole('link', { name: ' Signup / Login' });
         this.productsButton = page.getByRole('link', { name: ' Products' });
-        this.cartButton = page.getByRole('link', { name: 'Cart' });
+        this.cartButton = page.getByRole('link', { name: 'Cart', exact: true });
         this.loggedInUser = page.locator('text=Logged in as');
         this.deleteAccountButton = page.getByRole('link', { name: ' Delete Account' });
         this.contactUsButton = page.getByRole('link', { name: ' Contact us' });
@@ -62,7 +62,9 @@ export class HomePage extends BasePage {
     }
 
     async clickContactUs() {
-        await this.clickAndWait(this.contactUsButton);
+        // Wait for the Contact page to fully load: its submit handler (confirm dialog + success
+        // message) is attached by page JS, and submitting before that silently reloads the form.
+        await this.clickAndWaitForUrl(this.contactUsButton, /\/contact_us/);
     }
 
     async clickTestCases() {
